@@ -5,17 +5,17 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * Design system definition.
+ * Froyo Buns design system.
  *
- * The @theme inline block maps CSS custom properties to Tailwind utility
- * classes (e.g. --color-primary -> bg-primary, text-primary).
+ * Brand palette (oklch):
+ *   --froyo-pink      #F6228D  oklch(0.642 0.247 357.7)
+ *   --froyo-teal      #149FBA  oklch(0.648 0.112 216.0)
+ *   --froyo-darkteal  #147275  oklch(0.503 0.081 198.3)
+ *   --froyo-cream     #F9EEEA  oklch(0.957 0.013 41.2)
+ *   --froyo-lightpink #F2D1D0  oklch(0.888 0.037 19.9)
+ *   --froyo-peach     #E7BAA6  oklch(0.824 0.059 45.2)
  *
- * The :root and .dark blocks define the actual color values using oklch.
- * All colors MUST use oklch format.
- *
- * To add a new semantic color:
- * 1. Add the variable to :root (light value) and .dark (dark value)
- * 2. Register it in @theme inline as --color-<name>: var(--<name>)
+ * All colors use oklch. Semantic tokens map to the brand palette below.
  */
 
 @theme inline {
@@ -26,6 +26,7 @@
   --radius-2xl: calc(var(--radius) + 8px);
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -51,85 +52,81 @@
   --color-chart-3: var(--chart-3);
   --color-chart-4: var(--chart-4);
   --color-chart-5: var(--chart-5);
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Brand tokens mapped to Tailwind utilities */
+  --color-froyo-pink: var(--froyo-pink);
+  --color-froyo-teal: var(--froyo-teal);
+  --color-froyo-darkteal: var(--froyo-darkteal);
+  --color-froyo-cream: var(--froyo-cream);
+  --color-froyo-lightpink: var(--froyo-lightpink);
+  --color-froyo-peach: var(--froyo-peach);
+
+  /* Type families */
+  --font-display: "Fredoka", "Myriad Pro", system-ui, sans-serif;
+  --font-body: "Myriad Pro", "Fredoka", system-ui, sans-serif;
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
+  --radius: 0.875rem;
+
+  --froyo-pink: oklch(0.642 0.247 357.7);
+  --froyo-teal: oklch(0.648 0.112 216);
+  --froyo-darkteal: oklch(0.503 0.081 198.3);
+  --froyo-cream: oklch(0.957 0.013 41.2);
+  --froyo-lightpink: oklch(0.888 0.037 19.9);
+  --froyo-peach: oklch(0.824 0.059 45.2);
+
+  --background: var(--froyo-cream);
+  --foreground: oklch(0.21 0.02 250);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
+  --card-foreground: oklch(0.21 0.02 250);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
-  --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.208 0.042 265.755);
+  --popover-foreground: oklch(0.21 0.02 250);
+  --primary: var(--froyo-pink);
+  --primary-foreground: oklch(0.99 0.01 41);
+  --secondary: var(--froyo-lightpink);
+  --secondary-foreground: oklch(0.34 0.12 358);
+  --muted: var(--froyo-cream);
+  --muted-foreground: oklch(0.45 0.03 250);
+  --accent: var(--froyo-teal);
+  --accent-foreground: oklch(0.99 0.01 200);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.984 0.003 247.858);
-  --sidebar-foreground: oklch(0.129 0.042 264.695);
-  --sidebar-primary: oklch(0.208 0.042 265.755);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.968 0.007 247.896);
-  --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
-  --sidebar-border: oklch(0.929 0.013 255.508);
-  --sidebar-ring: oklch(0.704 0.04 256.788);
+  --border: oklch(0.9 0.02 41);
+  --input: oklch(0.92 0.02 41);
+  --ring: var(--froyo-pink);
+  --chart-1: var(--froyo-pink);
+  --chart-2: var(--froyo-teal);
+  --chart-3: var(--froyo-peach);
+  --chart-4: var(--froyo-darkteal);
+  --chart-5: var(--froyo-lightpink);
 }
 
 .dark {
-  --background: oklch(0.129 0.042 264.695);
-  --foreground: oklch(0.984 0.003 247.858);
-  --card: oklch(0.208 0.042 265.755);
-  --card-foreground: oklch(0.984 0.003 247.858);
-  --popover: oklch(0.208 0.042 265.755);
-  --popover-foreground: oklch(0.984 0.003 247.858);
-  --primary: oklch(0.929 0.013 255.508);
-  --primary-foreground: oklch(0.208 0.042 265.755);
-  --secondary: oklch(0.279 0.041 260.031);
-  --secondary-foreground: oklch(0.984 0.003 247.858);
-  --muted: oklch(0.279 0.041 260.031);
-  --muted-foreground: oklch(0.704 0.04 256.788);
-  --accent: oklch(0.279 0.041 260.031);
-  --accent-foreground: oklch(0.984 0.003 247.858);
+  --background: oklch(0.2 0.04 250);
+  --foreground: oklch(0.957 0.013 41.2);
+  --card: oklch(0.26 0.04 250);
+  --card-foreground: oklch(0.957 0.013 41.2);
+  --popover: oklch(0.26 0.04 250);
+  --popover-foreground: oklch(0.957 0.013 41.2);
+  --primary: var(--froyo-pink);
+  --primary-foreground: oklch(0.99 0.01 41);
+  --secondary: oklch(0.32 0.06 358);
+  --secondary-foreground: oklch(0.957 0.013 41.2);
+  --muted: oklch(0.3 0.03 250);
+  --muted-foreground: oklch(0.72 0.03 250);
+  --accent: var(--froyo-teal);
+  --accent-foreground: oklch(0.99 0.01 200);
   --destructive: oklch(0.704 0.191 22.216);
   --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.551 0.027 264.364);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.208 0.042 265.755);
-  --sidebar-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.279 0.041 260.031);
-  --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.551 0.027 264.364);
+  --border: oklch(1 0 0 / 12%);
+  --input: oklch(1 0 0 / 16%);
+  --ring: var(--froyo-pink);
+  --chart-1: var(--froyo-pink);
+  --chart-2: var(--froyo-teal);
+  --chart-3: var(--froyo-peach);
+  --chart-4: var(--froyo-darkteal);
+  --chart-5: var(--froyo-lightpink);
 }
 
 @layer base {
@@ -139,6 +136,212 @@
 
   body {
     background-color: var(--color-background);
+    background-image: url("https://vibe.filesafe.space/1790640811168876865/attachments/3bc526ca-4828-472c-bc14-c45d662c2ab2.png");
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
     color: var(--color-foreground);
+    font-family: var(--font-body);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+}
+
+/* ---- Brand utilities ---- */
+
+@utility text-balance {
+  text-wrap: balance;
+}
+
+@utility gradient-pink-teal {
+  background-image: linear-gradient(
+    120deg,
+    var(--froyo-pink) 0%,
+    var(--froyo-teal) 50%,
+    var(--froyo-darkteal) 100%
+  );
+}
+
+@utility gradient-cream-peach {
+  background-image: linear-gradient(160deg, var(--froyo-cream) 0%, var(--froyo-peach) 100%);
+}
+
+/* Frosted glass panel — standard property only; build adds the prefix */
+@utility glass-card {
+  background-color: color-mix(in oklab, var(--card) 78%, transparent);
+  backdrop-filter: blur(16px) saturate(140%);
+}
+
+/* Hero blobs */
+@utility hero-blob {
+  border-radius: 42% 58% 63% 37% / 41% 44% 56% 59%;
+  filter: blur(40px);
+}
+
+/* Organic blob shape for Shibbys-style card backing */
+.shibbys-blob-1 {
+  border-radius: 48% 52% 56% 44% / 46% 49% 51% 54%;
+}
+.shibbys-blob-2 {
+  border-radius: 54% 46% 42% 58% / 52% 45% 55% 48%;
+}
+.shibbys-blob-3 {
+  border-radius: 46% 54% 52% 48% / 58% 48% 52% 42%;
+}
+
+/* Infinite marquee for flavours carousel */
+@keyframes marquee-flavours {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee-flavours {
+  display: flex;
+  width: max-content;
+  animation: marquee-flavours 26s linear infinite;
+}
+
+.animate-marquee-flavours:hover {
+  animation-play-state: paused;
+}
+
+/* Floating sprinkles — drift upward gently when the footer is in view */
+@keyframes sprinkle-float {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.9;
+  }
+  85% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(-120px) rotate(220deg);
+    opacity: 0;
+  }
+}
+
+@utility sprinkle {
+  position: absolute;
+  border-radius: 9999px;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.sprinkle-active .sprinkle {
+  animation: sprinkle-float linear infinite;
+}
+
+/* Page-wide floating sprinkles — subtle, drift gently across the viewport */
+@keyframes page-sprinkle-float {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.5;
+  }
+  85% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translate(20px, 60px) rotate(180deg);
+    opacity: 0;
+  }
+}
+
+@utility page-sprinkle {
+  position: absolute;
+  border-radius: 9999px;
+  pointer-events: none;
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+.page-sprinkle-active .page-sprinkle {
+  animation: page-sprinkle-float ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-sprinkle-active .page-sprinkle,
+  .sprinkle-active .sprinkle {
+    animation: none;
+    opacity: 0;
+  }
+}
+
+/* Gentle floating effect for showcase cups */
+@keyframes float-cup {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+.animate-float-cup {
+  animation: float-cup 4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-float-cup {
+    animation: none;
+  }
+}
+
+/* 3D spinning card — loyalty card front / rewards back, slow continuous rotation */
+.flip-card {
+  perspective: 1400px;
+  aspect-ratio: 1.6 / 1;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  animation: spin-card 9s linear infinite;
+}
+
+.flip-card-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+}
+
+.flip-card-back {
+  transform: rotateX(180deg);
+}
+
+@keyframes spin-card {
+  0% {
+    transform: rotateX(0deg);
+  }
+  100% {
+    transform: rotateX(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flip-card-inner {
+    animation: none;
   }
 }

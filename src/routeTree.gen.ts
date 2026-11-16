@@ -10,33 +10,161 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as FaqsRouteImport } from './routes/faqs'
+import { Route as LoyaltyRouteImport } from './routes/loyalty'
+import { Route as MenuRouteImport } from './routes/menu'
+import { Route as ApiPassRouteImport } from './routes/api/pass'
+import { Route as LoyaltyIndexRouteImport } from './routes/loyalty.index'
+import { Route as LoyaltyHowItWorksRouteImport } from './routes/loyalty.how-it-works'
+import { Route as LoyaltyJoinRouteImport } from './routes/loyalty.join'
+import { Route as LoyaltyRewardsRouteImport } from './routes/loyalty.rewards'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FaqsRoute = FaqsRouteImport.update({
+  id: '/faqs',
+  path: '/faqs',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoyaltyRoute = LoyaltyRouteImport.update({
+  id: '/loyalty',
+  path: '/loyalty',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MenuRoute = MenuRouteImport.update({
+  id: '/menu',
+  path: '/menu',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPassRoute = ApiPassRouteImport.update({
+  id: '/api/pass',
+  path: '/api/pass',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoyaltyIndexRoute = LoyaltyIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => LoyaltyRoute,
+} as any)
+const LoyaltyHowItWorksRoute = LoyaltyHowItWorksRouteImport.update({
+  id: '/how-it-works',
+  path: '/how-it-works',
+  getParentRoute: () => LoyaltyRoute,
+} as any)
+const LoyaltyJoinRoute = LoyaltyJoinRouteImport.update({
+  id: '/join',
+  path: '/join',
+  getParentRoute: () => LoyaltyRoute,
+} as any)
+const LoyaltyRewardsRoute = LoyaltyRewardsRouteImport.update({
+  id: '/rewards',
+  path: '/rewards',
+  getParentRoute: () => LoyaltyRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
+  '/faqs': typeof FaqsRoute
+  '/loyalty': typeof LoyaltyRouteWithChildren
+  '/menu': typeof MenuRoute
+  '/api/pass': typeof ApiPassRoute
+  '/loyalty/how-it-works': typeof LoyaltyHowItWorksRoute
+  '/loyalty/join': typeof LoyaltyJoinRoute
+  '/loyalty/rewards': typeof LoyaltyRewardsRoute
+  '/loyalty/': typeof LoyaltyIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
+  '/faqs': typeof FaqsRoute
+  '/menu': typeof MenuRoute
+  '/api/pass': typeof ApiPassRoute
+  '/loyalty/how-it-works': typeof LoyaltyHowItWorksRoute
+  '/loyalty/join': typeof LoyaltyJoinRoute
+  '/loyalty/rewards': typeof LoyaltyRewardsRoute
+  '/loyalty': typeof LoyaltyIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
+  '/faqs': typeof FaqsRoute
+  '/loyalty': typeof LoyaltyRouteWithChildren
+  '/menu': typeof MenuRoute
+  '/api/pass': typeof ApiPassRoute
+  '/loyalty/how-it-works': typeof LoyaltyHowItWorksRoute
+  '/loyalty/join': typeof LoyaltyJoinRoute
+  '/loyalty/rewards': typeof LoyaltyRewardsRoute
+  '/loyalty/': typeof LoyaltyIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/faqs'
+    | '/loyalty'
+    | '/menu'
+    | '/api/pass'
+    | '/loyalty/how-it-works'
+    | '/loyalty/join'
+    | '/loyalty/rewards'
+    | '/loyalty/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/faqs'
+    | '/menu'
+    | '/api/pass'
+    | '/loyalty/how-it-works'
+    | '/loyalty/join'
+    | '/loyalty/rewards'
+    | '/loyalty'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/faqs'
+    | '/loyalty'
+    | '/menu'
+    | '/api/pass'
+    | '/loyalty/how-it-works'
+    | '/loyalty/join'
+    | '/loyalty/rewards'
+    | '/loyalty/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  ContactRoute: typeof ContactRoute
+  FaqsRoute: typeof FaqsRoute
+  LoyaltyRoute: typeof LoyaltyRouteWithChildren
+  MenuRoute: typeof MenuRoute
+  ApiPassRoute: typeof ApiPassRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +176,104 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/faqs': {
+      id: '/faqs'
+      path: '/faqs'
+      fullPath: '/faqs'
+      preLoaderRoute: typeof FaqsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/loyalty': {
+      id: '/loyalty'
+      path: '/loyalty'
+      fullPath: '/loyalty'
+      preLoaderRoute: typeof LoyaltyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/menu': {
+      id: '/menu'
+      path: '/menu'
+      fullPath: '/menu'
+      preLoaderRoute: typeof MenuRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/pass': {
+      id: '/api/pass'
+      path: '/api/pass'
+      fullPath: '/api/pass'
+      preLoaderRoute: typeof ApiPassRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/loyalty/': {
+      id: '/loyalty/'
+      path: '/'
+      fullPath: '/loyalty/'
+      preLoaderRoute: typeof LoyaltyIndexRouteImport
+      parentRoute: typeof LoyaltyRoute
+    }
+    '/loyalty/how-it-works': {
+      id: '/loyalty/how-it-works'
+      path: '/how-it-works'
+      fullPath: '/loyalty/how-it-works'
+      preLoaderRoute: typeof LoyaltyHowItWorksRouteImport
+      parentRoute: typeof LoyaltyRoute
+    }
+    '/loyalty/join': {
+      id: '/loyalty/join'
+      path: '/join'
+      fullPath: '/loyalty/join'
+      preLoaderRoute: typeof LoyaltyJoinRouteImport
+      parentRoute: typeof LoyaltyRoute
+    }
+    '/loyalty/rewards': {
+      id: '/loyalty/rewards'
+      path: '/rewards'
+      fullPath: '/loyalty/rewards'
+      preLoaderRoute: typeof LoyaltyRewardsRouteImport
+      parentRoute: typeof LoyaltyRoute
+    }
   }
 }
 
+interface LoyaltyRouteChildren {
+  LoyaltyHowItWorksRoute: typeof LoyaltyHowItWorksRoute
+  LoyaltyJoinRoute: typeof LoyaltyJoinRoute
+  LoyaltyRewardsRoute: typeof LoyaltyRewardsRoute
+  LoyaltyIndexRoute: typeof LoyaltyIndexRoute
+}
+
+const LoyaltyRouteChildren: LoyaltyRouteChildren = {
+  LoyaltyHowItWorksRoute: LoyaltyHowItWorksRoute,
+  LoyaltyJoinRoute: LoyaltyJoinRoute,
+  LoyaltyRewardsRoute: LoyaltyRewardsRoute,
+  LoyaltyIndexRoute: LoyaltyIndexRoute,
+}
+
+const LoyaltyRouteWithChildren =
+  LoyaltyRoute._addFileChildren(LoyaltyRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  ContactRoute: ContactRoute,
+  FaqsRoute: FaqsRoute,
+  LoyaltyRoute: LoyaltyRouteWithChildren,
+  MenuRoute: MenuRoute,
+  ApiPassRoute: ApiPassRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
